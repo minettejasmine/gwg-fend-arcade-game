@@ -34,35 +34,50 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-// Defining the Player class
-    // Constructor
+// Defining the Hero class
+    // every class needs a constructor method in order to initialize a new object
+    // add properties to the constructor method
+    // default x/y coordinates to 0, which is the top left corner of the board
+    // Sprite image = provide image so Player Hero is visible on screen
 
-            // Properties
-                // x position = determine where player is on the game board
-                // y position = determine where player is on the game board
-                // Sprite image = provide image so Player is visible on screen
+class Hero { 
+    constructor() {
+        this.x = 0;
+        this.y = 0;
+        this.sprite = 'images/char-boy.png';
+    }
+    /*
+    // draw player Hero sprite on current x/y position on board
+    // used same render method as the one defined in the Enemy class starter code
+    // calls the drawImage method form the ctx (2d canvas) object with a few arguments: the result of the get method of the Resources object, which returns a cached image of the sprite from the url, the x parameter, the y parameter
+    */
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+// create variable that enables initialization of new object; store the new object in this variable
+// Place the Hero object in a variable called player
+const player = new Hero();
 
             // Methods
-                // METHOD: Update position = gets run every cycle of the game engine loop; checking for Player's position on the board in relation to whatever we want
-                    // Collision (check for collision FUNCTION to be called from the update position method) = this function checks whether or not the player's x/y position crosses with an enemy's x/y position 
-                        // Did player collide with an enemy?
-                    // Check for win location (check for victory FUNCTION)= function to check whether or not the player reached the end of the game, when the player reaches the top row of the board game grid
-                        // Did player x/y position reach any of the 'Final' tiles in the top row of the game board grid?
-                // METHOD: Render = this method will draw or redraw the player to the game board at every loop through the main game loop. In order to draw, the render function need the player's sprite image and the x/y position
-                    // FUNCTION: Draw player psrite image on current x/y position
-                // METHOD: Keyboard Input handler = handles the input from the event listener on the player's arrow keys; needs to execute this methos and make the correct changes to the x/y position that corresponds to the direction the player is moving the prite image arund the game board
-                    // FUNCTION: update the player's sprite x/y position based on the user input
+                // METHOD: Update position = gets run every cycle of the game engine loop; checking for Player Hero's position on the board in relation to whatever we want
+                    // Collision (check for collision FUNCTION to be called from the update position method) = this function checks whether or not the player Hero's x/y position crosses with an enemy's x/y position 
+                        // Did player Hero collide with an enemy?
+                    // Check for win location (check for victory FUNCTION)= function to check whether or not the player Hero reached the end of the game, when the player Hero reaches the top row of the board game grid
+                        // Did player Hero x/y position reach any of the 'Final' tiles in the top row of the game board grid?
+                // METHOD: Render = this method will draw or redraw the player Hero to the game board at every loop through the main game loop. In order to draw, the render function need the player Hero's sprite image and the x/y position
+                    // FUNCTION: Draw player Hero sprite image on current x/y position
+                // METHOD: Keyboard Input handler = handles the input from the event listener on the player Hero's arrow keys; needs to execute this methos and make the correct changes to the x/y position that corresponds to the direction the player Hero is moving the prite image arund the game board
+                    // FUNCTION: update the player Hero's sprite x/y position based on the user input
                 // METHOD: Reset Hero
                     // set winning / ending x/y position to the starting x/y position 
 
+
 // Now instantiate your objects.
-    // New Player object (one, because it is a single player game)
+    // New Hero object (one, because it is a single player game)
 
 // Place all enemy objects in an array called allEnemies
     // init allEnemies array = holds all of our undetermined number of enemies; to fill this array we can use a loop and for up to a number of desired enemies, create a new enemy object and push it into the allEnemies array
-// Place the player object in a variable called player
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
