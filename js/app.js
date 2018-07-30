@@ -39,12 +39,17 @@ Enemy.prototype.render = function() {
     // add properties to the constructor method
     // default x/y coordinates to 0, which is the top left corner of the board
     // Sprite image = provide image so Player Hero is visible on screen
+    // In engine.js file, the drawImage method indicates 101 px for columns and 83 px for rows, which means each block on the grid has a width of 101 and a height of 83
 
 class Hero { 
     constructor() {
-        this.x = 0;
-        this.y = 0;
         this.sprite = 'images/char-boy.png';
+        this.step = 101; // distance between one block to another from the x axis
+        this.jump = 83; // distance between one block to another on the y axis
+        this.startX = this.step * 2; // places Hero 2 blocks to the right (middle block) on the x axis
+        this.startY = (this.jump * 5) - 20; // places Hero 5 blocks down form the top row on the Y axis; substract 20 px for more centered location on block
+        this.x = this.startX; // reference to the start position that cannot be modified by the reset Hero method
+        this.y = this.startY; // reference to the start position that cannot be modified by the reset Hero method
     }
     /*
     // draw player Hero sprite on current x/y position on board
@@ -53,6 +58,35 @@ class Hero {
     */
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    // add new method handleInput, which updates hero's x and y property according to user input
+    // @param {string} input = direction to travel
+    handleInput(input) {
+        // used a switch statement for this functionality; could do a chain of if else statements to accomplish the same thing: check the value of input and match it to the correct direction; subtracting the value of x moves the character left, adding to x moves the character right; adding to y causes the character to move down, while decreasing y makes the character move up; top left corner is (0,0)
+        switch(input) {
+            case 'left':
+                if (this.x > 0) {
+                    this.x -= this.step; // Conditional that checks if hero's x property is greater than 0 (left edge of the board). If it is greater than 0, then move left.
+                }
+                break;
+            case 'up':
+                if (this.y > this.jump) { // Added padding to top edge of board so that Hero doesnt get into the water.
+                    this.y -= this.jump; // Use value defined in the Hero class constructor. Added conditional to prevent Hero from moving past the top edge of the board. Y axis starts at the top and increasing y means the Hero is moving down.
+                }
+                break;
+            case 'right':
+                if (this.x < this.step * 4) {
+                    this.x += this.step; // Use the value defined in the Hero class contructor; Added conditional that checks if Hero's x property is no greater than 4 steps to the right on the x axis.
+                } 
+                break;
+            case 'down':
+                if (this.y < this.jump * 4) {
+                    this.y += this.jump; // Use the value defined in the Hero class contructor; Added conditional that checks if Hero's y property by setting the boundary for number of block heights form the top of the y axis. Using 4 block height to reach boundary because we have a 20 px padding on the starting position block.
+                }
+                break;
+        }
+
     }
 }
 // create variable that enables initialization of new object; store the new object in this variable
@@ -81,6 +115,8 @@ const player = new Hero();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
+// In this event listener there is an object with key value pairs containing numbers and strings
+// Call a player method handleInput, which is being passed an argument of the value of the allowedKeys objects which corresponds with the event key code selected by the user
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
