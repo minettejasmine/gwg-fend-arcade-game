@@ -1,35 +1,47 @@
 // Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // x pos
-    // y pos
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-};
-
+class Enemy {
+    constructor(x, y, speed) {
+        this.sprite = 'images/enemy-bug.png'; // URL of enemy sprite image.
+        this.x = x; // x pos
+        this.y = y + 55; // y pos, centered across the blocks by adding 55 px to the y axis
+        this.speed = speed;
+        this.step = 101; // distance between one block to another from the x axis
+        this.boundary = this.step * 5;
+        this.resetPos = -this.step;
+    }
+}
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+// This method is called within the game repeatedly.
+// dt gives the enemy a constant speed across the game board as it loops through the code in the game loop
+// this method will check if the current positoon of the enemy is not past the screen edge
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 
     // If Enemy is not past boundary
+    if(this.x < this.boundary) {
         // move forward
         // increment x by speed * dt (delta time) for constant time
-    // else
-        // reset position to start
-    // this method will check if the current positoon of the enemy is not past the screen edge
+        this.x += this.speed * dt; //if true, then increment the object's x property and assigned speed
+    }   
+    else {
+        this.x = this.resetPos; // resets position to start; enables enemies to loop around the game board, going left to right
+    }  
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+const bug1 = new Enemy(-101, 0, 200); // Instantiates an enemy object, which is stored in this variable, along with the x/y position and speed.
+const bug2 = new Enemy(-101, 83, 300); // Instantiates an enemy object, which is stored in this variable, along with the x/y position and speed.
+const bug3 = new Enemy((-101*2.5), 83, 300); // Instantiates an enemy object, which is stored in this variable, along with the x/y position and speed.
+const allEnemies = []; // Creates array that stores all enemies; push bug objects to this array.
+allEnemies.push(bug1,bug2,bug3); // Push bug object to array.
+console.log(allEnemies);
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -86,12 +98,12 @@ class Hero {
                 }
                 break;
         }
-
     }
 }
 // create variable that enables initialization of new object; store the new object in this variable
 // Place the Hero object in a variable called player
 const player = new Hero();
+
 
             // Methods
                 // METHOD: Update position = gets run every cycle of the game engine loop; checking for Player Hero's position on the board in relation to whatever we want
@@ -107,11 +119,6 @@ const player = new Hero();
                     // set winning / ending x/y position to the starting x/y position 
 
 
-// Now instantiate your objects.
-    // New Hero object (one, because it is a single player game)
-
-// Place all enemy objects in an array called allEnemies
-    // init allEnemies array = holds all of our undetermined number of enemies; to fill this array we can use a loop and for up to a number of desired enemies, create a new enemy object and push it into the allEnemies array
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
