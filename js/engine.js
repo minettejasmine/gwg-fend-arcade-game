@@ -23,6 +23,7 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+        id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed // UNCAUGHT REFERENCE ERROR: id not defined
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,7 +56,12 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+         if (player.victory === true) {
+            win.cancelAnimationFrame(id); // Call the cancelAnimationFrame method and pass the id variable as the argument
+         }
+         else {
+             id = win.requestAnimationFrame(main);
+         }
     }
 
     /* This function does some initial setup that should only occur once,

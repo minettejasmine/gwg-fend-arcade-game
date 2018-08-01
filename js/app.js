@@ -64,6 +64,7 @@ class Hero {
         this.startY = (this.jump * 4) + 55; // places Hero 5 blocks down form the top row on the Y axis; substract 20 px for more centered location on block; changed 20px to 55px to coincide with enemy y axis positioning
         this.x = this.startX; // reference to the start position that cannot be modified by the reset Hero method
         this.y = this.startY; // reference to the start position that cannot be modified by the reset Hero method
+        this.victory = false;
     }
     
     // Using same render method as the one defined in the Enemy class starter code
@@ -113,15 +114,21 @@ class Hero {
             if (this.y === enemy.y && (enemy.x + enemy.step/2 > this.x && enemy.x < this.x + this.step/2)) {
                 this.reset();
             }
-            
-             // Reset hero after collision
-            reset() { // Uncaught Syntax Error: unexpected token { ???
-                // Set x and y to starting x and y
-                this.y = this.startY;
-                this.x = this.startX;
-            }
-            
+        }
+        /*
+        // Check for win location (check for victory FUNCTION)= function to check whether or not the player Hero reached the end of the game, when the player Hero reaches the top row of the board game grid
+        // Did player Hero x/y position reach any of the 'Final' tiles in the top row of the game board grid?
+        // Check if the hero's y location is equal to the top of the grid at 0 + 55px center offset
+        */
+        if(this.y === 55) {
+            this.victory = true;
         }  
+    }
+    // Reset hero after collision
+    reset() { 
+        // Set x and y to starting x and y
+        this.y = this.startY;
+        this.x = this.startX;
     }
 }
 // create variable that enables initialization of new Hero object; store the new object in this variable
@@ -130,15 +137,12 @@ const player = new Hero();
 
 
             // Methods
-                // Check for win location (check for victory FUNCTION)= function to check whether or not the player Hero reached the end of the game, when the player Hero reaches the top row of the board game grid
-                // Did player Hero x/y position reach any of the 'Final' tiles in the top row of the game board grid?
+               
 
                 // METHOD: Render = this method will draw or redraw the player Hero to the game board at every loop through the main game loop. In order to draw, the render function need the player Hero's sprite image and the x/y position
                     // FUNCTION: Draw player Hero sprite image on current x/y position
                 // METHOD: Keyboard Input handler = handles the input from the event listener on the player Hero's arrow keys; needs to execute this methos and make the correct changes to the x/y position that corresponds to the direction the player Hero is moving the prite image arund the game board
                     // FUNCTION: update the player Hero's sprite x/y position based on the user input
-                // METHOD: Reset Hero
-                    // set winning / ending x/y position to the starting x/y position 
 
 
 
