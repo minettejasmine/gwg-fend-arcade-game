@@ -32,6 +32,7 @@ Enemy.prototype.update = function(dt) {
 };
 
 // Draw the enemy on the screen, required method for game
+// calls the drawImage method from the ctx (2d canvas) object with a few arguments: the result of the get method of the Resources object, which returns a cached image of the sprite from the url, the x parameter, the y parameter
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -49,6 +50,7 @@ console.log(allEnemies);
 // Defining the Hero class
     // every class needs a constructor method in order to initialize a new object
     // add properties to the constructor method
+    // draw player Hero sprite on current x/y position on board
     // default x/y coordinates to 0, which is the top left corner of the board
     // Sprite image = provide image so Player Hero is visible on screen
     // In engine.js file, the drawImage method indicates 101 px for columns and 83 px for rows, which means each block on the grid has a width of 101 and a height of 83
@@ -59,15 +61,12 @@ class Hero {
         this.step = 101; // distance between one block to another from the x axis
         this.jump = 83; // distance between one block to another on the y axis
         this.startX = this.step * 2; // places Hero 2 blocks to the right (middle block) on the x axis
-        this.startY = (this.jump * 5) - 20; // places Hero 5 blocks down form the top row on the Y axis; substract 20 px for more centered location on block
+        this.startY = (this.jump * 4) + 55; // places Hero 5 blocks down form the top row on the Y axis; substract 20 px for more centered location on block; changed 20px to 55px to coincide with enemy y axis positioning
         this.x = this.startX; // reference to the start position that cannot be modified by the reset Hero method
         this.y = this.startY; // reference to the start position that cannot be modified by the reset Hero method
     }
-    /*
-    // draw player Hero sprite on current x/y position on board
-    // used same render method as the one defined in the Enemy class starter code
-    // calls the drawImage method form the ctx (2d canvas) object with a few arguments: the result of the get method of the Resources object, which returns a cached image of the sprite from the url, the x parameter, the y parameter
-    */
+    
+    // Using same render method as the one defined in the Enemy class starter code
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
@@ -99,18 +98,41 @@ class Hero {
                 break;
         }
     }
+    update() {
+        // METHOD: Update position = gets run every cycle of the game engine loop; checking for Player Hero's position on the board in relation bugs
+            // Collision (check for collision FUNCTION to be called from the update position method) = this function checks whether or not the player Hero's x/y position crosses/collides with an enemy's x/y position 
+                
+        for(let enemy of allEnemies) {
+            /*
+            // Did player Hero's x/y position collide with an enemy?
+            // Add conditional to determine when the two objects collide on the x axis
+            // Determine if the enemy.x + enemy.step (right side) is greater than the player’s this.x (left side)
+            // Check if the enemy.x (left side) is less than the player’s this.x + this.step (right side). 
+            // If the enemy object falls within these 2 points on the x axis (as well as the y axis), then a collision happens.
+            */
+            if (this.y === enemy.y && (enemy.x + enemy.step/2 > this.x && enemy.x < this.x + this.step/2)) {
+                this.reset();
+            }
+            
+             // Reset hero after collision
+            reset() { // Uncaught Syntax Error: unexpected token { ???
+                // Set x and y to starting x and y
+                this.y = this.startY;
+                this.x = this.startX;
+            }
+            
+        }  
+    }
 }
-// create variable that enables initialization of new object; store the new object in this variable
+// create variable that enables initialization of new Hero object; store the new object in this variable
 // Place the Hero object in a variable called player
 const player = new Hero();
 
 
             // Methods
-                // METHOD: Update position = gets run every cycle of the game engine loop; checking for Player Hero's position on the board in relation to whatever we want
-                    // Collision (check for collision FUNCTION to be called from the update position method) = this function checks whether or not the player Hero's x/y position crosses with an enemy's x/y position 
-                        // Did player Hero collide with an enemy?
-                    // Check for win location (check for victory FUNCTION)= function to check whether or not the player Hero reached the end of the game, when the player Hero reaches the top row of the board game grid
-                        // Did player Hero x/y position reach any of the 'Final' tiles in the top row of the game board grid?
+                // Check for win location (check for victory FUNCTION)= function to check whether or not the player Hero reached the end of the game, when the player Hero reaches the top row of the board game grid
+                // Did player Hero x/y position reach any of the 'Final' tiles in the top row of the game board grid?
+
                 // METHOD: Render = this method will draw or redraw the player Hero to the game board at every loop through the main game loop. In order to draw, the render function need the player Hero's sprite image and the x/y position
                     // FUNCTION: Draw player Hero sprite image on current x/y position
                 // METHOD: Keyboard Input handler = handles the input from the event listener on the player Hero's arrow keys; needs to execute this methos and make the correct changes to the x/y position that corresponds to the direction the player Hero is moving the prite image arund the game board
