@@ -9,7 +9,7 @@
  * drawn but that is not the case. What's really happening is the entire "scene"
  * is being drawn over and over, presenting the illusion of animation.
  *
- * This engine makes the canvas' context (ctx) object globally available to make 
+ * This engine makes the canvas' context (ctx) object globally available to make
  * writing app.js a little simpler to work with.
  */
 
@@ -23,23 +23,24 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed 
+        id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed
 
-    // Game over box modal
+    // Game over box modal functionality
     const modal = document.querySelector('.modal_background');
     // Replay button in game over modal
     const replay = document.querySelector('.replay_button');
-
+    /*
     // Add event listener for the reply button on the box modal.
     // Hide modal via toggle
-    // Reset user back to start
+    // Reset user back to starting position
     // Use condition for victory = false to set up a new game
     // Restart animation frame for game board
+    */
     replay.addEventListener('click', function() {
        modal.classList.toggle('hide');
        player.reset();
        player.victory = false;
-       win.requestAnimationFrame(main); 
+       win.requestAnimationFrame(main);
     });
 
     canvas.width = 505;
@@ -50,7 +51,7 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
-        /* Get our time delta information which is required if your game
+        /* Get the time delta information which is required if the game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
          * would be the same for everyone (regardless of how fast their
@@ -141,7 +142,7 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height)
 

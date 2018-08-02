@@ -1,9 +1,8 @@
 body {
     text-align: center;
 }
-/*
- * Styles for the modal and related functionality (background).
- */
+
+/* Styles for the modal and related functionality (background). */
 
 .modal_background {
     position: absolute;
@@ -25,7 +24,7 @@ body {
 
 .modal_heading {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 1.5rem;
     border-bottom: 1px solid gray;
