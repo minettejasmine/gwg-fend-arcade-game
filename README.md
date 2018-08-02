@@ -25,3 +25,5 @@ To play the game, an internet browser and a keyboard with standard arrow keys ar
 ## Contributing
 
 This repository contains a combination of starter code (HTML, CSS, and JavaScript) from Udacity and code written by Minette J. Roberson. For development details and review, the following files can be opened with a text editor: `index.html`, `app.css`, `app.js`, `engine.js`, and `resources.js`. There is an image folder containing files of the images used as well as additional image options for the character, enemies, and tiles. Because this Arcade Game is the product of a GWG Udacity FEND Project,  pull requests will most likely not be accepted until further notice.
+
+For additional resources on development options for this project, go to: [1]: https://www.diigo.com/outliner/fj3m65/Udacity-Classic-Arcade-Game-Project-(project-%233)?key=al7ek43dms In particular, Matthew Cranford's blog and the "Slides from Webinar: P3 Walkthrough conducted by RyanB[FEND]" were excellent resources for learning how to approach this project.
