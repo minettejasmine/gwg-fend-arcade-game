@@ -22,7 +22,7 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
         id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed // UNCAUGHT REFERENCE ERROR: id not defined
 
     canvas.width = 505;
