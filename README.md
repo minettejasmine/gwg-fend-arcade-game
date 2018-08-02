@@ -16,7 +16,7 @@ Start the game by clicking on the up arrow key. The character image at the botto
 
 If the character collides with a bug, then the character is sent back to the starting position on the board.
 
-The game ends when the character reaches any of the water tiles at the top of the board. A message in the modal will then appear and announce "gave Over!" The modal contains a Replay button to allow the user to play again.
+The game ends when the character reaches any of the water tiles at the top of the board. A message in the modal will then appear and announce "Game Over!" The modal contains a Replay button to allow the user to play again.
 
 ## Requirements
 
@@ -26,4 +26,4 @@ To play the game, an internet browser and a keyboard with standard arrow keys ar
 
 This repository contains a combination of starter code (HTML, CSS, and JavaScript) from Udacity and code written by Minette J. Roberson. For development details and review, the following files can be opened with a text editor: `index.html`, `app.css`, `app.js`, `engine.js`, and `resources.js`. There is an image folder containing files of the images used as well as additional image options for the character, enemies, and tiles. Because this Arcade Game is the product of a GWG Udacity FEND Project,  pull requests will most likely not be accepted until further notice.
 
-For additional resources on development options for this project, go to: [1]: https://www.diigo.com/outliner/fj3m65/Udacity-Classic-Arcade-Game-Project-(project-%233)?key=al7ek43dms In particular, Matthew Cranford's blog and the "Slides from Webinar: P3 Walkthrough conducted by RyanB[FEND]" were excellent resources for learning how to approach this project.
+For additional resources on development options for this project, go to: https://www.diigo.com/outliner/fj3m65/Udacity-Classic-Arcade-Game-Project-(project-%233)?key=al7ek43dms In particular, Matthew Cranford's blog and the "Slides from Webinar: P3 Walkthrough conducted by RyanB[FEND]" were excellent resources for learning how to approach this project.
