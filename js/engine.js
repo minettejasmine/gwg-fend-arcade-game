@@ -23,7 +23,24 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed // UNCAUGHT REFERENCE ERROR: id not defined
+        id; // variable for the returned id from the requestAnimationFrame method, so the cancelAnimationFrame method can be executed 
+
+    // Game over box modal
+    const modal = document.querySelector('.modal_background');
+    // Replay button in game over modal
+    const replay = document.querySelector('.replay_button');
+
+    // Add event listener for the reply button on the box modal.
+    // Hide modal via toggle
+    // Reset user back to start
+    // Use condition for victory = false to set up a new game
+    // Restart animation frame for game board
+    replay.addEventListener('click', function() {
+       modal.classList.toggle('hide');
+       player.reset();
+       player.victory = false;
+       win.requestAnimationFrame(main); 
+    });
 
     canvas.width = 505;
     canvas.height = 606;
@@ -58,6 +75,7 @@ var Engine = (function(global) {
          */
          if (player.victory === true) {
             win.cancelAnimationFrame(id); // Call the cancelAnimationFrame method and pass the id variable as the argument
+            modal.classList.toggle('hide');
          }
          else {
              id = win.requestAnimationFrame(main);
