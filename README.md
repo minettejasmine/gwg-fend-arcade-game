@@ -1,6 +1,27 @@
-frontend-nanodegree-arcade-game
-===============================
+# Grow With Google Udacity Front-End Nanodegree Arcade Game
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Table of Contents
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+* [Instructions](#instructions)
+* [Requirements](#requirements)
+* [Contributing](#contributing)
+
+## Instructions
+
+Welcome to the Arcade Game! This game is based upon the functionality of the popular classic arcade game called Frogger. This game was developed for the Grow With Google (GWG) Udacity Front-End Developer (FEND) Nanodegree.
+
+To get started, open `index.html` and the game board should appear in your internet browser. The game board is derived from a grid pattern containing green grass tiles, grey stone tiles, and blue water tiles. There is a character / avatar at the bottom center of the board.  There are multiple "bug enemies" running on the road at different speeds and locations.
+
+Start the game by clicking on the up arrow key. The character image at the bottom of the board will move in the corresponding direction. Continue to  move the character using the arrow keys: up, down, left, or right.
+
+If the character collides with a bug, then the character is sent back to the starting position on the board.
+
+The game ends when the character reaches any of the water tiles at the top of the board. A message in the modal will then appear and announce "gave Over!" The modal contains a Replay button to allow the user to play again.
+
+## Requirements
+
+To play the game, an internet browser and a keyboard with standard arrow keys are required.
+
+## Contributing
+
+This repository contains a combination of starter code (HTML, CSS, and JavaScript) from Udacity and code written by Minette J. Roberson. For development details and review, the following files can be opened with a text editor: `index.html`, `app.css`, `app.js`, 'engine.js', and 'resources.js'. There is an image folder containing files of the images used as well as additional image options for the character, bugs, and tiles. Because this Arcade Game is the product of a GWG Udacity FEND Project,  pull requests will most likely not be accepted until further notice.
